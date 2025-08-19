@@ -34,8 +34,8 @@ const Selectresume = () => {
       return;
     }
 
-    // ✅ Navigate to Cntc.jsx page
-    navigate("/cntc", {
+    // ✅ Navigate to Contact Info Page (Cntc.jsx)
+    navigate("/create-resume/contact-info", {
       state: {
         selectedOption: selected,
         uploadedFile: uploadedFile,
