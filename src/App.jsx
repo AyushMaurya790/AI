@@ -12,7 +12,7 @@ import SignupPage from './pages/SignupPage';
 // Resume Builder Pages
 import ExperienceLevel from './CreateResume/ExperienceLevel';
 import ChooseTemplate from './CreateResume/ChooseTemplate';
-import SelectResume from './CreateResume/Selectresume';
+import Selectresume from './CreateResume/Selectresume';
 import Education from './CreateResume/Education';
 import Finalize from './CreateResume/Finalize';
 import Cntc from './CreateResume/Cntc';
@@ -81,7 +81,7 @@ function App() {
                 path="/create-resume/selectresume"
                 element={
                   <ProtectedRoute>
-                    <SelectResume />
+                    <Selectresume />
                   </ProtectedRoute>
                 }
               />

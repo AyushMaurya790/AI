@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./SelectResume.css";
+import "./Selectresume.css";
 
-const SelectResume = () => {
+const Selectresume = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -108,4 +108,4 @@ const SelectResume = () => {
   );
 };
 
-export default SelectResume;
+export default Selectresume;
