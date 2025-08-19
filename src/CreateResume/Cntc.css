@@ -1,0 +1,171 @@
+.cntc-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-content {
+  flex: 2;
+  padding-right: 40px;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.suggestion {
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.required-note {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group.required label::after {
+  content: ' *';
+  color: #e74c3c;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.name-fields,
+.location-fields {
+  display: flex;
+  gap: 20px;
+}
+
+.name-fields .form-group,
+.location-fields .form-group {
+  flex: 1;
+}
+
+.save-continue-btn {
+  background-color: #2b78e4;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.save-continue-btn:hover {
+  background-color: #1a5cb0;
+}
+
+.results-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.results-card h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.statistic {
+  font-size: 16px;
+  color: #2b78e4;
+  margin-bottom: 15px;
+}
+
+.disclaimer {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.change-template {
+  margin-bottom: 30px;
+}
+
+.change-template-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.change-template-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  font-size: 12px;
+  color: #999;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .cntc-container {
+    flex-direction: column;
+  }
+  
+  .main-content {
+    padding-right: 0;
+    margin-bottom: 30px;
+  }
+  
+  .name-fields,
+  .location-fields {
+    flex-direction: column;
+    gap: 0;
+  }
+}

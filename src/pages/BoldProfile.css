@@ -1,0 +1,156 @@
+.bold-profile-editor {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #333;
+}
+
+.welcome-section {
+  margin-bottom: 30px;
+}
+
+.welcome-section h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.user-name {
+  color: #2a6fdb;
+}
+
+.welcome-text {
+  font-size: 16px;
+  color: #555;
+}
+
+.profile-container {
+  display: flex;
+  gap: 30px;
+}
+
+.left-sidebar {
+  width: 250px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.sidebar-section {
+  margin-bottom: 25px;
+}
+
+.sidebar-section h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.profile-strength {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.strength-indicator {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  width: fit-content;
+}
+
+.fantastic {
+  background-color: #e6f7ee;
+  color: #0d9053;
+}
+
+.completion-indicator {
+  font-weight: 600;
+  font-size: 14px;
+  color: #2a6fdb;
+  margin-bottom: 10px;
+}
+
+.section-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.section-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profile-name {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.contact-button {
+  background-color: #2a6fdb;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.design-section, .background-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.design-section h3, .background-section h3 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.design-option {
+  padding: 10px;
+  background-color: white;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.photo-preview {
+  height: 150px;
+  background-color: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  margin-bottom: 15px;
+  border: 1px dashed #ccc;
+}
+
+.publish-button {
+  background-color: #0d9053;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}

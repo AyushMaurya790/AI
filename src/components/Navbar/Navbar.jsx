@@ -10,19 +10,21 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 50);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close menu on route change
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location]);
 
+  // Close menu on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (isMenuOpen && !event.target.closest('.navbar')) {
@@ -35,7 +37,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/");
+    navigate("/login"); // logout ke baad login page
     setIsMenuOpen(false);
   };
 
@@ -44,9 +46,7 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const isActiveLink = (path) => {
-    return location.pathname === path ? 'nav-link active' : 'nav-link';
-  };
+  const isActiveLink = (path) => location.pathname === path ? 'nav-link active' : 'nav-link';
 
   return (
     <header className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
@@ -67,40 +67,25 @@ const Navbar = () => {
         </button>
 
         <nav className={`nav-links ${isMenuOpen ? "open" : ""}`} role="navigation">
-          <Link to="/templates" className={isActiveLink("/templates")}>
-            Templates
-          </Link>
-          <Link to="/builder" className={isActiveLink("/builder")}>
-            Resume Builder
-          </Link>
-          <Link to="/cover-letter" className={isActiveLink("/cover-letter")}>
-            Cover Letter
-          </Link>
-          <Link to="/career-advice" className={isActiveLink("/career-advice")}>
-            Career Advice
-          </Link>
+          <Link to="/templates" className={isActiveLink("/templates")}>Templates</Link>
+          <Link to="/builder" className={isActiveLink("/builder")}>Resume Builder</Link>
+          <Link to="/cover-letter" className={isActiveLink("/cover-letter")}>Cover Letter</Link>
+          <Link to="/career-advice" className={isActiveLink("/career-advice")}>Career Advice</Link>
+
           {currentUser ? (
             <>
-              <Link to="/dashboard" className={isActiveLink("/dashboard")}>
-                My Documents
-              </Link>
-              <Link to="/builder" className="nav-link btn-primary">
-                Create Resume
-              </Link>
-              <button
-                className="nav-link logout-btn"
-                onClick={handleLogout}
-                aria-label="Logout"
-              >
-                Logout
-              </button>
+              {/* Show user name */}
+              <span className="user-name">Hello, {currentUser.fullName}</span>
+
+              <Link to="/dashboard" className={isActiveLink("/dashboard")}>Dashboard </Link>
+              <Link to="/builder" className="nav-link btn-primary">Create Resume</Link>
+
+              <button className="nav-link logout-btn" onClick={handleLogout}>Logout</button>
             </>
           ) : (
             <>
-              <Link to="/signup" className={isActiveLink("/signup")}>
-                Sign In
-              </Link>
-          
+              <Link to="/signup" className={isActiveLink("/signup")}>Sign Up</Link>
+              <Link to="/login" className={isActiveLink("/login")}>Login</Link>
             </>
           )}
         </nav>

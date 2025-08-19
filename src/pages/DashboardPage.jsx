@@ -1,37 +1,48 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './DashboardPage.css';
 
 const DashboardPage = () => {
+  const { currentUser } = useAuth();
+
   const resumes = [
     { id: 1, title: 'Software Engineer Resume', lastEdited: '2023-11-15', progress: 85 },
     { id: 2, title: 'Marketing Manager Resume', lastEdited: '2023-11-10', progress: 60 },
     { id: 3, title: 'Product Designer Resume', lastEdited: '2023-11-05', progress: 45 }
   ];
 
+  const activities = [
+    { action: 'Edited Software Engineer Resume', time: '2 hours ago' },
+    { action: 'Downloaded Marketing Resume', time: '1 day ago' },
+    { action: 'Started Product Designer Resume', time: '3 days ago' }
+  ];
+
   return (
     <div className="dashboard-page">
-      <div className="dashboard-header">
-        <h1>My Dashboard</h1>
-        <Link to="/builder" className="btn btn-primary">+ New Resume</Link>
-      </div>
+      <header className="dashboard-header">
+        <h1>Welcome, {currentUser?.fullName || 'User'}!</h1>
+        <Link to="/builder" className="btn btn-primary">+ Create New Resume</Link>
+      </header>
 
-      <div className="resume-stats">
+      <section className="resume-stats">
         <div className="stat-card">
-          <div className="stat-value">3</div>
+          <div className="stat-value">{resumes.length}</div>
           <div className="stat-label">Resumes</div>
         </div>
         <div className="stat-card">
-          <div className="stat-value">85%</div>
+          <div className="stat-value">
+            {Math.round(resumes.reduce((sum, r) => sum + r.progress, 0) / resumes.length)}%
+          </div>
           <div className="stat-label">Avg. Completion</div>
         </div>
         <div className="stat-card">
           <div className="stat-value">12</div>
           <div className="stat-label">Downloads</div>
         </div>
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="resumes-section">
         <h2>My Resumes</h2>
         <div className="resumes-grid">
           {resumes.map(resume => (
@@ -53,26 +64,22 @@ const DashboardPage = () => {
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      <div className="section">
+      <section className="activity-section">
         <h2>Recent Activity</h2>
         <div className="activity-list">
-          {[
-            { action: 'Edited Software Engineer Resume', time: '2 hours ago' },
-            { action: 'Downloaded Marketing Resume', time: '1 day ago' },
-            { action: 'Started Product Designer Resume', time: '3 days ago' }
-          ].map((activity, index) => (
-            <div key={index} className="activity-item">
+          {activities.map((act, idx) => (
+            <div key={idx} className="activity-item">
               <div className="activity-icon"></div>
-              <div>
-                <div className="activity-action">{activity.action}</div>
-                <div className="activity-time">{activity.time}</div>
+              <div className="activity-details">
+                <span className="activity-action">{act.action}</span>
+                <span className="activity-time">{act.time}</span>
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 };

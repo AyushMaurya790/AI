@@ -1,38 +1,40 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % 3);
-    }, 4000);
+      setCurrentSlide((prev) => (prev + 1) % 3); // 3 slides for rotation
+    }, 5000); // Matches Zety's ~5-second slide interval
     return () => clearInterval(interval);
   }, []);
 
   const statsData = [
     { number: '41M+', label: 'Job applications created' },
     { number: '1,400+', label: 'Free career guides' },
-    { number: '40M+', label: 'Readers a year' },
-    { number: '30+', label: 'Career Experts' }
+    { number: '40M+', label: 'Readers annually' },
+    { number: '30+', label: 'Career experts' }
   ];
 
   const testimonials = [
     {
-      quote: "Got 3 interviews in the first week! The templates are professional and ATS-friendly.",
+      quote: "I landed 3 interviews in a week! The templates are ATS-friendly and professional.",
       name: "Sarah K.",
       role: "Software Engineer",
       company: "Microsoft"
     },
     {
-      quote: "The AI suggestions helped me highlight my key achievements perfectly.",
+      quote: "The AI suggestions made my achievements stand out perfectly.",
       name: "Michael T.",
       role: "Marketing Manager",
       company: "Google"
     },
     {
-      quote: "Finally, a resume builder that recruiters actually recommend.",
+      quote: "Recruiters love this builder—finally a tool they recommend!",
       name: "David L.",
       role: "Product Designer",
       company: "Apple"
@@ -40,27 +42,27 @@ const HomePage = () => {
   ];
 
   const resumeExamples = [
-    { title: 'Accounting Resume', category: 'Finance' },
+    { title: 'Accountant Resume', category: 'Finance' },
     { title: 'Software Engineer Resume', category: 'Technology' },
     { title: 'Marketing Manager Resume', category: 'Marketing' },
     { title: 'Project Manager Resume', category: 'Management' },
-    { title: 'Nurse Resume', category: 'Healthcare' },
+    { title: 'Registered Nurse Resume', category: 'Healthcare' },
     { title: 'Teacher Resume', category: 'Education' },
     { title: 'Sales Representative Resume', category: 'Sales' },
     { title: 'Graphic Designer Resume', category: 'Design' }
   ];
 
   const templates = [
-    { name: 'Professional', description: 'Clean and modern design', popular: true },
-    { name: 'Creative', description: 'Stand out with color and style' },
-    { name: 'Executive', description: 'Perfect for senior positions' },
-    { name: 'Modern', description: 'Contemporary layouts' },
-    { name: 'Simple', description: 'Minimalist and clean' },
-    { name: 'Classic', description: 'Traditional and timeless' }
+    { name: 'Professional', description: 'Clean, modern design', popular: true },
+    { name: 'Creative', description: 'Bold colors and unique style' },
+    { name: 'Executive', description: 'Ideal for senior roles' },
+    { name: 'Modern', description: 'Sleek, contemporary layouts' },
+    { name: 'Simple', description: 'Minimalist and elegant' },
+    { name: 'Classic', description: 'Timeless and traditional' }
   ];
 
   const handleLinkClick = (section) => {
-    console.log(`Navigate to: ${section}`);
+    navigate(section);
   };
 
   return (
@@ -70,61 +72,117 @@ const HomePage = () => {
         <div className="container">
           <div className="hero-content">
             <h1>
-              Professional Resume & Cover Letter Tools
-              <span className="highlight">For Any Job</span>
+              Build a Professional Resume & Cover Letter
+              <span className="highlight">for Any Job</span>
             </h1>
             <p>
-              Create a job-winning resume in minutes with our easy-to-use builder. 
-              ATS-friendly templates designed by career experts.
+              Create a resume in minutes with our AI-powered builder. Use ATS-friendly templates designed by career experts.
             </p>
             <div className="hero-buttons">
-              <button 
-                onClick={() => handleLinkClick('signup')}
+              <button
+                onClick={() => handleLinkClick('/create-resume/experience-level')}
                 className="btn-primary"
               >
-                Create your resume now
+                Create My Resume
               </button>
-              <button 
-                onClick={() => handleLinkClick('templates')}
+              <button
+                onClick={() => handleLinkClick('/templates')}
                 className="btn-secondary"
               >
-                View Templates
+                View All Templates
               </button>
             </div>
             <div className="hero-trust">
-              <div className="stars">
-                ★★★★★
-              </div>
-              <span>Trusted by <strong>40M+</strong> job seekers worldwide</span>
+              <div className="stars">★★★★★</div>
+              <span>Trusted by <strong>40M+</strong> job seekers globally</span>
             </div>
           </div>
-          <div className="resume-preview-container">
-            <div className="resume-preview">
-              <div className="resume-header">
-                <div className="resume-name"></div>
-                <div className="resume-title"></div>
-              </div>
-              <div className="resume-body">
-                <div>
-                  <div className="resume-section"></div>
-                  <div className="resume-line"></div>
-                  <div className="resume-line"></div>
-                  <div className="resume-line short"></div>
-                  <div className="resume-section" style={{marginTop: '16px'}}></div>
-                  <div className="resume-line"></div>
-                  <div className="resume-line"></div>
+          <div className="hero-slideshow">
+            <div className="resume-preview-container">
+              <div className="resume-preview slide active" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+                <div className="resume-slide">
+                  <div className="resume-header">
+                    <div className="resume-name"></div>
+                    <div className="resume-title"></div>
+                  </div>
+                  <div className="resume-body">
+                    <div>
+                      <div className="resume-section"></div>
+                      <div className="resume-line"></div>
+                      <div className="resume-line"></div>
+                      <div className="resume-line short"></div>
+                      <div className="resume-section" style={{ marginTop: '16px' }}></div>
+                      <div className="resume-line"></div>
+                      <div className="resume-line"></div>
+                    </div>
+                    <div className="resume-skills">
+                      <span className="skill-chip js">JavaScript</span>
+                      <span className="skill-chip react">React</span>
+                      <span className="skill-chip node">Node.js</span>
+                      <span className="skill-chip mongodb">MongoDB</span>
+                    </div>
+                  </div>
+                  <div className="resume-footer">
+                    <div className="resume-line"></div>
+                    <div className="resume-line short"></div>
+                  </div>
                 </div>
-                <div className="resume-skills">
-                  <span className="skill-chip js">JavaScript</span>
-                  <span className="skill-chip react">React</span>
-                  <span className="skill-chip node">Node.js</span>
-                  <span className="skill-chip mongodb">MongoDB</span>
+                <div className="resume-slide">
+                  <div className="resume-header">
+                    <div className="resume-name"></div>
+                    <div className="resume-title"></div>
+                  </div>
+                  <div className="resume-body">
+                    <div>
+                      <div className="resume-section"></div>
+                      <div className="resume-line"></div>
+                      <div className="resume-line w-75"></div>
+                      <div className="resume-line w-50"></div>
+                    </div>
+                    <div className="resume-skills">
+                      <span className="skill-chip python">Python</span>
+                      <span className="skill-chip django">Django</span>
+                      <span className="skill-chip sql">SQL</span>
+                    </div>
+                  </div>
+                  <div className="resume-footer">
+                    <div className="resume-line"></div>
+                    <div className="resume-line short"></div>
+                  </div>
+                </div>
+                <div className="resume-slide">
+                  <div className="resume-header">
+                    <div className="resume-name"></div>
+                    <div className="resume-title"></div>
+                  </div>
+                  <div className="resume-body">
+                    <div>
+                      <div className="resume-section"></div>
+                      <div className="resume-line"></div>
+                      <div className="resume-line w-66"></div>
+                      <div className="resume-line w-75"></div>
+                    </div>
+                    <div className="resume-skills">
+                      <span className="skill-chip java">Java</span>
+                      <span className="skill-chip spring">Spring</span>
+                      <span className="skill-chip aws">AWS</span>
+                    </div>
+                  </div>
+                  <div className="resume-footer">
+                    <div className="resume-line"></div>
+                    <div className="resume-line short"></div>
+                  </div>
                 </div>
               </div>
-              <div className="resume-footer">
-                <div className="resume-line"></div>
-                <div className="resume-line short"></div>
-              </div>
+            </div>
+            <div className="slide-indicators">
+              {[0, 1, 2].map((index) => (
+                <span
+                  key={index}
+                  className={`indicator ${currentSlide === index ? 'active' : ''}`}
+                  onClick={() => setCurrentSlide(index)}
+                ></span>
+              ))}
             </div>
           </div>
         </div>
@@ -135,8 +193,8 @@ const HomePage = () => {
         <div className="container text-center">
           <h2>What is ResumeAI?</h2>
           <p>
-            ResumeAI is an all-in-one career platform powered by some of the best career experts and AI technology. 
-            We offer you the best online resume and cover letter builder, as well as free professional advice from career experts.
+            ResumeAI is your all-in-one career platform, powered by top career experts and AI technology. 
+            Get the best resume and cover letter builder, plus free expert advice.
           </p>
           <div className="stats-grid">
             {statsData.map((stat, index) => (
@@ -160,7 +218,7 @@ const HomePage = () => {
               </div>
               <h3>Resume Builder</h3>
               <p>
-                Save time with our expert tips every step of the way. Creating a professional resume has never been easier.
+                Save time with expert tips at every step. Build a professional resume effortlessly.
               </p>
             </div>
             <div className="feature-item">
@@ -169,7 +227,7 @@ const HomePage = () => {
               </div>
               <h3>ATS-Friendly Templates</h3>
               <p>
-                Grab recruiters' attention with 18 professional resume templates designed by career experts.
+                Attract recruiters with 18+ professional, ATS-optimized resume templates.
               </p>
             </div>
             <div className="feature-item">
@@ -178,7 +236,7 @@ const HomePage = () => {
               </div>
               <h3>Free Career Resources</h3>
               <p>
-                Shape your career with helpful guides and resume examples. Learn from our 1,400+ expert articles.
+                Access 1,400+ expert articles and resume examples to shape your career.
               </p>
             </div>
             <div className="feature-item">
@@ -187,7 +245,7 @@ const HomePage = () => {
               </div>
               <h3>Resume Check</h3>
               <p>
-                Score and check your resume in real-time with actionable improvement tips.
+                Get real-time resume scores with actionable improvement suggestions.
               </p>
             </div>
             <div className="feature-item">
@@ -196,7 +254,7 @@ const HomePage = () => {
               </div>
               <h3>AI Content Suggestions</h3>
               <p>
-                Discover expert-crafted content suggestions and create professional applications in minutes.
+                Use AI to get tailored content and build professional applications fast.
               </p>
             </div>
             <div className="feature-item">
@@ -205,7 +263,7 @@ const HomePage = () => {
               </div>
               <h3>HR Recommended</h3>
               <p>
-                Industry experts recommend our platform as a proven way to boost your career.
+                Trusted by HR experts as a proven career-boosting tool.
               </p>
             </div>
           </div>
@@ -215,35 +273,35 @@ const HomePage = () => {
       {/* 4 Easy Steps Section */}
       <section className="section bg-blue">
         <div className="container">
-          <h2 className="text-center">Create a Perfect Resume in 4 easy steps</h2>
+          <h2 className="text-center">Create a Perfect Resume in 4 Easy Steps</h2>
           <div className="steps-grid">
             <div className="step-item">
               <div className="step-number">1</div>
-              <h3>Pick a template</h3>
-              <p>Choose from 18 templates crafted by career professionals to help you land the interview.</p>
+              <h3>Pick a Template</h3>
+              <p>Choose from 18+ templates designed by career pros to land your interview.</p>
             </div>
             <div className="step-item">
               <div className="step-number">2</div>
-              <h3>Add expert-written content</h3>
-              <p>With just a few clicks, add tailored, job-specific content created by career experts.</p>
+              <h3>Add Expert Content</h3>
+              <p>Add job-specific content with a few clicks, crafted by career experts.</p>
             </div>
             <div className="step-item">
               <div className="step-number">3</div>
-              <h3>Make it yours</h3>
-              <p>Adjust the colors, fonts, and layout with our user-friendly interface.</p>
+              <h3>Customize It</h3>
+              <p>Adjust colors, fonts, and layouts with our easy-to-use editor.</p>
             </div>
             <div className="step-item">
               <div className="step-number">4</div>
-              <h3>Download in PDF or DOC</h3>
-              <p>Download your polished resume in the preferred file format. Ready to apply!</p>
+              <h3>Download Your Resume</h3>
+              <p>Download in PDF or DOC format, ready to apply!</p>
             </div>
           </div>
           <div className="text-center mt-48">
-            <button 
-              onClick={() => handleLinkClick('signup')}
+            <button
+              onClick={() => handleLinkClick('/signup')}
               className="btn-primary"
             >
-              Create Your Resume Now
+              Get Started Now
             </button>
           </div>
         </div>
@@ -253,18 +311,16 @@ const HomePage = () => {
       <section className="section">
         <div className="container">
           <div className="text-center">
-            <h2>Pick from 18 Professional Resume Templates</h2>
+            <h2>Choose from 18+ Professional Resume Templates</h2>
             <p>
-              Build your resume quickly and effortlessly. Our ATS-optimized templates help you find your desired job faster.
+              Build your resume fast with ATS-optimized templates to accelerate your job search.
             </p>
           </div>
           <div className="templates-grid">
             {templates.map((template, index) => (
               <div key={index} className="template-card">
                 {template.popular && (
-                  <div className="template-popular">
-                    Most Popular
-                  </div>
+                  <div className="template-popular">Most Popular</div>
                 )}
                 <div className="template-preview">
                   <div className="template-mockup">
@@ -280,8 +336,8 @@ const HomePage = () => {
                 <div className="template-content">
                   <h3>{template.name}</h3>
                   <p>{template.description}</p>
-                  <button 
-                    onClick={() => handleLinkClick(`templates/${template.name.toLowerCase()}`)}
+                  <button
+                    onClick={() => handleLinkClick(`/templates/${template.name.toLowerCase()}`)}
                     className="btn-template"
                   >
                     Use Template
@@ -291,11 +347,11 @@ const HomePage = () => {
             ))}
           </div>
           <div className="text-center mt-32">
-            <button 
-              onClick={() => handleLinkClick('templates')}
+            <button
+              onClick={() => handleLinkClick('/templates')}
               className="btn-link"
             >
-              See All Resume Templates →
+              See All Templates →
             </button>
           </div>
         </div>
@@ -305,10 +361,9 @@ const HomePage = () => {
       <section className="section bg-gray">
         <div className="container">
           <div className="text-center">
-            <h2>Get Inspired with Resume Samples</h2>
+            <h2>Get Inspired with Resume Examples</h2>
             <p>
-              Explore our vast library of over 600 resume examples tailored to most professions and industries. 
-              Written by Certified Professional Resume Writers.
+              Explore over 600 resume examples for various professions, crafted by Certified Resume Writers.
             </p>
           </div>
           <div className="examples-grid">
@@ -329,21 +384,21 @@ const HomePage = () => {
                 <div className="example-content">
                   <div className="example-category">{example.category}</div>
                   <h3>{example.title}</h3>
-                  <button 
-                    onClick={() => handleLinkClick(`examples/${example.title.toLowerCase().replace(/\s+/g, '-')}`)}
+                  <button
+                    onClick={() => handleLinkClick(`/examples/${example.title.toLowerCase().replace(/\s+/g, '-')}`)}
                   >
-                    See the example →
+                    View Example →
                   </button>
                 </div>
               </div>
             ))}
           </div>
           <div className="text-center mt-32">
-            <button 
-              onClick={() => handleLinkClick('examples')}
+            <button
+              onClick={() => handleLinkClick('/examples')}
               className="btn-primary"
             >
-              Check All Resume Examples
+              Explore All Examples
             </button>
           </div>
         </div>
@@ -352,13 +407,11 @@ const HomePage = () => {
       {/* Testimonials Section */}
       <section className="section">
         <div className="container">
-          <h2 className="text-center">Success Stories</h2>
+          <h2 className="text-center">What Our Users Say</h2>
           <div className="testimonials-grid">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="testimonial-card">
-                <div className="testimonial-stars">
-                  ★★★★★
-                </div>
+                <div className="testimonial-stars">★★★★★</div>
                 <blockquote className="testimonial-quote">
                   "{testimonial.quote}"
                 </blockquote>
@@ -378,16 +431,15 @@ const HomePage = () => {
       {/* Final CTA Section */}
       <section className="section bg-gradient">
         <div className="container text-center">
-          <h2>Transform your career today and join thousands of satisfied users</h2>
+          <h2>Start Your Career Journey Today</h2>
           <p>
-            Experience our intuitive resume builder and take a shortcut to your dream career. 
-            Discover why thousands of job seekers and HR experts trust us.
+            Join millions of users and boost your career with our resume builder. Trusted by HR experts worldwide.
           </p>
-          <button 
-            onClick={() => handleLinkClick('signup')}
+          <button
+            onClick={() => handleLinkClick('/signup')}
             className="btn-cta"
           >
-            Try our resume maker
+            Start Now
           </button>
         </div>
       </section>

@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -9,6 +8,15 @@ import TemplatesPage from './pages/TemplatesPage';
 import PricingPage from './pages/PricingPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+
+// Resume Builder Pages
+import ExperienceLevel from './CreateResume/ExperienceLevel';
+import ChooseTemplate from './CreateResume/ChooseTemplate';
+import SelectResume from './CreateResume/Selectresume';
+import Education from './CreateResume/Education';
+import Finalize from './CreateResume/Finalize';
+import Cntc from './CreateResume/Cntc';
+
 import Navbar from './components/Navbar/Navbar.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import './App.css';
@@ -27,13 +35,82 @@ function App() {
           <Navbar />
           <main className="main-content">
             <Routes>
+              {/* Public Pages */}
               <Route path="/" element={<HomePage />} />
-              <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
-              <Route path="/builder" element={<ProtectedRoute><BuilderPage /></ProtectedRoute>} />
               <Route path="/templates" element={<TemplatesPage />} />
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
+
+              {/* Protected Pages */}
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <DashboardPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/builder"
+                element={
+                  <ProtectedRoute>
+                    <BuilderPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Resume Creation Flow */}
+              <Route
+                path="/create-resume/experience-level"
+                element={
+                  <ProtectedRoute>
+                    <ExperienceLevel />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/create-resume/choose-template"
+                element={
+                  <ProtectedRoute>
+                    <ChooseTemplate />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/create-resume/selectresume"
+                element={
+                  <ProtectedRoute>
+                    <SelectResume />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/create-resume/contact-info"
+                element={
+                  <ProtectedRoute>
+                    <Cntc />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/create-resume/education"
+                element={
+                  <ProtectedRoute>
+                    <Education />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/create-resume/finalize"
+                element={
+                  <ProtectedRoute>
+                    <Finalize />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Catch-all */}
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </main>
